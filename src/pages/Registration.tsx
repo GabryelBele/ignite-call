@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importando useNavigate
 import styled from 'styled-components';
 import Progress from '../components/Progress';
-import InputField from '../components/InputField';
 import Button from '../components/Button';
 import Header from '../components/Header'; // Importando o Header reutilizável
+import InputField from '../components/InputField';
 
 const Container = styled.div`
   display: flex;

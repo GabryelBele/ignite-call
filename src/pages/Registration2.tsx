@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importando useNavigate
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { gapi } from 'gapi-script';
 import Progress from '../components/Progress';
-import InputField from '../components/InputField';
 import Button from '../components/Button';
-import Header from '../components/Header'; // Importando o Header reutilizável
+import Header from '../components/Header';
+import InputBox from '../components/InputBox';
 
 const Container = styled.div`
   display: flex;
@@ -19,7 +20,7 @@ const Container = styled.div`
 
 const Modal = styled.div`
   width: 540px;
-  height: auto;
+  height: 180px;
   padding: 24px;
   gap: 16px;
   display: flex;
@@ -31,52 +32,60 @@ const Modal = styled.div`
   background-color: #1f1f1f;
 `;
 
+const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+
 const RegistrationStep2: React.FC = () => {
-  const [username, setUsername] = useState('');
-  const [fullName, setFullName] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
 
-  const navigate = useNavigate(); // Hook para navegação
+  useEffect(() => {
+    gapi.load('client:auth2', () => {
+      gapi.auth2.init({
+        client_id: clientId!,
+      });
+    });
+  }, []);
 
-  const handleNextStep = () => {
-    // Verificar se ambos os campos têm valores
-    if (username.trim() && fullName.trim()) {
-      navigate('/registration-step2'); // Navegação para a próxima página
-    } else {
-      console.error('Preencha todos os campos');
+  const handleGoogleLogin = async () => {
+    const authInstance = gapi.auth2.getAuthInstance();
+    try {
+      await authInstance.signIn();
+      setIsAuthenticated(true);
+      fetchGoogleCalendarEvents();
+    } catch (error) {
+      console.error('Erro ao autenticar', error);
     }
   };
 
-  // Passando o valor diretamente
-  const handleUsernameChange = (value: string) => {
-    setUsername(value);
+  const fetchGoogleCalendarEvents = async () => {
+    if (!isAuthenticated) return;
+
+    try {
+      const response = await gapi.client.calendar.events.list({
+        calendarId: 'primary',
+        timeMin: new Date().toISOString(),
+        showDeleted: false,
+        singleEvents: true,
+        maxResults: 10,
+        orderBy: 'startTime',
+      });
+      console.log('Eventos encontrados:', response.result.items);
+    } catch (error) {
+      console.error('Erro ao buscar eventos', error);
+    }
   };
 
-  const handleFullNameChange = (value: string) => {
-    setFullName(value);
-  };
+  const handleNextStep = () => navigate('/registration-step3');
 
   return (
     <Container>
       <Header
         title="Bem-vindo ao Ignite Call!"
-        description="Precisamos de algumas informações para criar seu perfil. Você pode editar essas informações depois."
+        description="Precisamos de algumas informações para criar seu perfil."
       />
-
       <Progress currentStep={2} totalSteps={4} />
-
       <Modal>
-        <InputField
-          label="Nome de usuário"
-          placeholder="Ex.: joseph"
-          value={username}
-          onChange={handleUsernameChange} // Passando o valor diretamente
-        />
-        <InputField
-          label="Nome completo"
-          placeholder="Ex.: Joseph Oliveira"
-          value={fullName}
-          onChange={handleFullNameChange} // Passando o valor diretamente
-        />
+        <InputBox onClick={handleGoogleLogin} />
         <Button text="Próximo passo →" onClick={handleNextStep} />
       </Modal>
     </Container>
