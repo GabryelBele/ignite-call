@@ -32,7 +32,7 @@ const Modal = styled.div`
   background-color: #1f1f1f;
 `;
 
-const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+const clientId = import.meta.env.VITE_REACT_APP_GOOGLE_CLIENT_ID;
 
 const RegistrationStep2: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

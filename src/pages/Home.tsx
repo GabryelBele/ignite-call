@@ -75,7 +75,7 @@ const Home: React.FC = () => {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate('/registrationStep1');
+    navigate('/registration-step1');
   };
 
   return (
@@ -85,7 +85,7 @@ const Home: React.FC = () => {
         <p>
           Conecte seu calendário e permita que as pessoas marquem agendamentos no seu tempo livre.
         </p>
-        <button onClick={handleButtonClick}>Criar Conta Com o Google</button>
+        <button onClick={handleButtonClick} aria-label='Criar Conta com o Google'>Criar Conta Com o Google</button>
       </LeftSection>
 
       <RightSection>

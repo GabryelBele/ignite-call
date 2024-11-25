@@ -49,7 +49,7 @@ const Button = styled.button`
 `;
 
 interface InputBoxProps {
-  onClick: () => void; // Define a função de click
+  onClick: () => void;
 }
 
 const InputBox: React.FC<InputBoxProps> = ({ onClick }) => {

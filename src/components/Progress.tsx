@@ -14,22 +14,22 @@ const ProgressContainer = styled.div`
 `;
 
 const ProgressText = styled.p`
-  color: #ffffff; /* Cor do texto */
+  color: #ffffff;
   font-size: 16px;
   margin-bottom: 8px;
 `;
 
 const ProgressBarsContainer = styled.div`
   display: flex;
-  gap: 4px; /* Espaçamento entre as barras */
+  gap: 4px;
   width: 100%;
-  max-width: 400px; /* Largura máxima */
+  max-width: 400px;
 `;
 
 const ProgressBar = styled.div<{ isActive: boolean }>`
   width: 100%;
   height: 8px;
-  background-color: ${({ isActive }) => (isActive ? '#4CAF50' : '#888')}; /* Verde para o ativo, cinza para os inativos */
+  background-color: ${({ isActive }) => (isActive ? '#4CAF50' : '#888')};
   border-radius: 4px;
   transition: background-color 0.3s ease;
 `;

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importando useNavigate
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Progress from '../components/Progress';
 import Button from '../components/Button';
-import Header from '../components/Header'; // Importando o Header reutilizável
+import Header from '../components/Header';
 import InputField from '../components/InputField';
 
 const Container = styled.div`
@@ -35,18 +35,17 @@ const RegistrationStep1: React.FC = () => {
   const [username, setUsername] = useState('');
   const [fullName, setFullName] = useState('');
 
-  const navigate = useNavigate(); // Hook para navegação
+  const navigate = useNavigate();
 
   const handleNextStep = () => {
-    // Verificar se ambos os campos têm valores
+
     if (username.trim() && fullName.trim()) {
-      navigate('/registration-step2'); // Navegação para a próxima página
+      navigate('/registration-step2');
     } else {
       console.error('Preencha todos os campos');
     }
   };
 
-  // Passando o valor diretamente
   const handleUsernameChange = (value: string) => {
     setUsername(value);
   };
@@ -69,13 +68,13 @@ const RegistrationStep1: React.FC = () => {
           label="Nome de usuário"
           placeholder="Ex.: joseph"
           value={username}
-          onChange={handleUsernameChange} // Passando o valor diretamente
+          onChange={handleUsernameChange}
         />
         <InputField
           label="Nome completo"
           placeholder="Ex.: Joseph Oliveira"
           value={fullName}
-          onChange={handleFullNameChange} // Passando o valor diretamente
+          onChange={handleFullNameChange} 
         />
         <Button text="Próximo passo →" onClick={handleNextStep} />
       </Modal>

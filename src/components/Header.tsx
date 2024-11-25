@@ -11,11 +11,11 @@ const HeaderContainer = styled.div`
   flex-direction: column;
   width: 540px;
   padding: 0px 24px;
-  gap: 8px; /* Espaço entre o título e a descrição */
+  gap: 8px;
 `;
 
 const StyledTitle = styled.h2`
-  width: 100%; /* Ajusta a largura para o tamanho do contêiner */
+  width: 100%;
   font-family: Roboto;
   font-size: 24px;
   font-weight: 700;
@@ -25,10 +25,10 @@ const StyledTitle = styled.h2`
 `;
 
 const StyledDescription = styled.p`
-  width: 100%; /* Ajusta a largura para o tamanho do contêiner */
+  width: 100%;
   opacity: 0.8;
-  margin-top: 0; /* Remove a margem superior para alinhar corretamente */
-  color: #FFFFFF; /* Cor para o texto da descrição */
+  margin-top: 0;
+  color: #FFFFFF;
 `;
 
 const Header: React.FC<HeaderProps> = ({ title, description }) => {

@@ -6,7 +6,7 @@ interface TitleProps {
   description: string;
 }
 
-// Estilizando o h1
+
 const StyledTitle = styled.h2`
   width: 272px;
   height: 38px;
@@ -21,11 +21,11 @@ const StyledTitle = styled.h2`
   color: #FFFFFF;
 `;
 
-// Estilizando o parágrafo
+
 const StyledDescription = styled.p`
   width: 272px;
   margin-left: 24px;
-  opacity: 0.8; /* Ajuste conforme necessário */
+  opacity: 0.8;
 `;
 
 const Title: React.FC<TitleProps> = ({ title, description }) => {
