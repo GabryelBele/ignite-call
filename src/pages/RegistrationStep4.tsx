@@ -102,7 +102,7 @@ const RegistrationStep4: React.FC = () => {
     }
   };
 
-  const handleNextStep = () => navigate('/registration-step5'); 
+  const handleNextStep = () => navigate('/calendar'); 
 
   return (
     <Container>
