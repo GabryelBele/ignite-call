@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Ícones de seta
 
 const CalendarWrapper = styled.div`
   display: flex;
@@ -20,13 +21,41 @@ const CalendarHeader = styled.div`
   width: 540px;
   height: 136px;
   border-radius: 6px 6px 0 0;
-  padding: 0px 24px ;
+  padding: 0px 24px;
 `;
 
 const MonthName = styled.h2`
   font-size: 16px;
   line-height: 22.5px;
   color: #FFF;
+`;
+
+const NavigationButtons = styled.div`
+  display: flex;
+  gap: 12px;
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+      background-color: #3c3c3c;
+    }
+
+    svg {
+      color: #fff;
+      width: 20px;
+      height: 20px;
+    }
+  }
 `;
 
 const CalendarBody = styled.div`
@@ -61,8 +90,9 @@ const Day = styled.div<{ isWeekend: boolean }>`
   border-radius: 5px;
   cursor: pointer;
   color: #fff;
+
   &:hover {
-    background-color: #e0e0e0;
+    background-color: #3c3c3c;
   }
 `;
 
@@ -84,10 +114,14 @@ const Calendar: React.FC = () => {
     <CalendarWrapper>
       <CalendarHeader>
         <MonthName>November 2024</MonthName>
-        <div>
-          <button>Prev</button>
-          <button>Next</button>
-        </div>
+        <NavigationButtons>
+          <button>
+            <FaChevronLeft /> {/* Ícone de seta para a esquerda */}
+          </button>
+          <button>
+            <FaChevronRight /> {/* Ícone de seta para a direita */}
+          </button>
+        </NavigationButtons>
       </CalendarHeader>
       <CalendarBody>
         <DaysOfWeek>

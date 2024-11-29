@@ -6,6 +6,8 @@ import RegistrationStep2 from '../pages/RegistrationStep2.tsx';
 import RegistrationStep3 from '../pages/RegistrationStep3.tsx';
 import RegistrationStep4 from '../pages/RegistrationStep4.tsx';
 import Meeting from '../pages/Meeting.tsx';
+import Meeting2 from '../pages/Meeting2.tsx';
+import Meeting3 from '../pages/Meeting3.tsx';
 
 
 const AppRoutes: React.FC = () => {
@@ -18,6 +20,8 @@ const AppRoutes: React.FC = () => {
           <Route path="/registration-step3" element={<RegistrationStep3 />} />
           <Route path="/registration-step4" element={<RegistrationStep4 />} />
           <Route path="/calendar" element={<Meeting />} />
+          <Route path='/calendar/time' element= {<Meeting2/>} />
+          <Route path='/calendar/time/confirm' element={<Meeting3/>} />
         </Routes>
       </Router>
   );
